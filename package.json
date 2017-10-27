@@ -1,0 +1,22 @@
+{
+  "name": "delete-course",
+  "version": "1.0.0",
+  "description": "Deletes a Canvas Course. Used as part of our conversion tool.",
+  "main": "deleteCourse.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/byuitechops/delete-course.git"
+  },
+  "author": "Daniel Green",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/byuitechops/delete-course/issues"
+  },
+  "homepage": "https://github.com/byuitechops/delete-course#readme",
+  "dependencies": {
+    "canvas-wrapper": "github:byuitechops/canvas-wrapper"
+  }
+}
