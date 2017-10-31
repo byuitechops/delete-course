@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/byuitechops/delete-course#readme",
   "dependencies": {
-    "canvas-wrapper": "github:byuitechops/canvas-wrapper"
+    "canvas-wrapper": "github:byuitechops/Canvas-wrapper"
   }
 }
