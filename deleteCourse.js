@@ -6,7 +6,6 @@
 const canvas = require('canvas-wrapper');
 
 module.exports = (course, stepCallback) => {
-    course.addModuleReport('deleteCourse');
 
     /* Only delete when flagged for removal and canvasOU exists */
     if (course.settings.deleteCourse === true && course.info.canvasOU != undefined) {
@@ -17,14 +16,14 @@ module.exports = (course, stepCallback) => {
                 course.throwErr('deleteCourse', err);
                 return;
             }
-            course.success('deleteCourse', 'deleteCourse successfully deleted the course from Canvas');
+            course.message('"Delete Course" was disabled in settings. The Canvas course was not deleted.');
             stepCallback(null, course);
         });
     } else if (course.info.canvasOU === undefined) {
-        course.throwWarning('deleteCourse', 'Canvas OU was not defined. Was the course created? (ignore if you skipped course upload)');
+        course.warning('Canvas OU was not defined. Was the course created? (ignore if you skipped course upload)');
         stepCallback(null, course);
     } else {
-        course.success('deleteCourse', 'deleteCourse determined the course did not need to be deleted.');
+        course.message('"Delete Course" was enabled in settings. The Canvas course was deleted.');
         stepCallback(null, course);
     }
 }
