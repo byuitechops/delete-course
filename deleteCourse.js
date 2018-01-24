@@ -8,6 +8,7 @@ const canvas = require('canvas-wrapper');
 module.exports = (course, stepCallback) => {
 
     /* Only delete when flagged for removal and canvasOU exists */
+    course.message(`course.settings.delete: ${course.settings.delete}`);
     if (course.settings.deleteCourse == true) {
         var url = `/api/v1/courses/${course.info.canvasOU}?event=delete`;
         canvas.delete(url, (err, body) => {
@@ -17,12 +18,15 @@ module.exports = (course, stepCallback) => {
             }
             course.message('"Delete Course" was disabled in settings. The Canvas course was not deleted.');
             stepCallback(null, course);
+            return;
         });
     } else if (course.info.canvasOU === undefined) {
         course.warning('Canvas OU was not defined. Was the course created? (ignore if you skipped course upload)');
         stepCallback(null, course);
+        return;
     } else {
         course.message('"Delete Course" was disabled in settings. The Canvas course was not deleted.');
         stepCallback(null, course);
+        return;
     }
 }
