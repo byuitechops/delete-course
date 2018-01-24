@@ -8,7 +8,7 @@ const canvas = require('canvas-wrapper');
 module.exports = (course, stepCallback) => {
 
     /* Only delete when flagged for removal and canvasOU exists */
-    if (course.settings.deleteCourse === true && course.info.canvasOU != undefined) {
+    if (course.settings.deleteCourse == true) {
         var url = `/api/v1/courses/${course.info.canvasOU}?event=delete`;
         canvas.delete(url, (err, body) => {
             if (err) {
