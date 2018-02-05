@@ -6,9 +6,8 @@
 const canvas = require('canvas-wrapper');
 
 module.exports = (course, stepCallback) => {
-
+  
     /* Only delete when flagged for removal and canvasOU exists */
-    course.message(`course.settings.delete: ${course.settings.delete}`);
     if (course.settings.deleteCourse == true) {
         var url = `/api/v1/courses/${course.info.canvasOU}?event=delete`;
         canvas.delete(url, (err, body) => {
@@ -16,7 +15,7 @@ module.exports = (course, stepCallback) => {
                 course.throwErr('deleteCourse', err);
                 return;
             }
-            course.message('"Delete Course" was disabled in settings. The Canvas course was not deleted.');
+            course.message(`Course ${course.info.canvasOU} was successfully deleted from Canvas.`);
             stepCallback(null, course);
             return;
         });
@@ -25,8 +24,9 @@ module.exports = (course, stepCallback) => {
         stepCallback(null, course);
         return;
     } else {
-        course.message('"Delete Course" was disabled in settings. The Canvas course was not deleted.');
+        // course.message('"Delete Course" was disabled in settings. The Canvas course was not deleted.');
         stepCallback(null, course);
         return;
     }
-}
+};
+  
